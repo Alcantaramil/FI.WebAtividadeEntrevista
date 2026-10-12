@@ -79,7 +79,7 @@
     <div class="row">
         <div class="col-lg-6">
             <div class="pull-left">
-                <button type="button" id="btnBeneficiarios" class="btn btn-info" data-toggle="modal" data-target="#modalBeneficiario" disabled="disabled" >Beneficiários</button>
+                <button type="button" id="btnBeneficiarios" class="btn btn-info" data-toggle="modal" data-target="#modalBeneficiario" disabled="disabled">Beneficiários</button>
             </div>
         </div>
         <div class="col-lg-6">
@@ -95,14 +95,17 @@
 <div class="modal fade" id="modalBeneficiario" tabindex="-1" role="dialog" aria-labelledby="modalBeneficiarioTitulo">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="modalBeneficiarioTitulo">Beneficiários</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+            <div class="modal-header" style="padding: 10px 0px 25px 0">
+                <div class="col-md-11">
+                    <h5 class="modal-title" id="modalBeneficiarioTitulo">Beneficiários</h5>
+                </div>
+                <div class="col-md-1">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
             </div>
             <div class="modal-body">
-                <!-- Se quiser isolar este formulário depois, você pode transformá-lo em uma Partial View (Forms.cshtml) -->
                 <form id="formCadastroBeneficiario" method="post">
                     <input type="hidden" id="BeneficiarioId" name="Id" value="0" />
                     <div class="row">
@@ -118,9 +121,9 @@
                                 <input required="required" type="text" class="form-control" id="NomeBeneficiario" name="Nome" placeholder="Ex.: João" maxlength="50">
                             </div>
                         </div>
-                        <div class="col-md-2 d-flex align-items-end">
-                            <div class="form-group">
-                                <button type="submit" id="btnSalvarBeneficiario" class="btn btn-success btn-block">Incluir</button>
+                        <div class="col-md-2 d-flex align-item-end">
+                            <div class="form-group" style="margin-top: 25px">
+                                <button type="submit" id="btnSalvarBeneficiario" class="btn btn-md btn-success">Incluir</button>
                             </div>
                         </div>
                     </div>
@@ -128,9 +131,8 @@
 
                 <hr />
 
-                <!-- Grid de Beneficiários -->
                 <div class="table-responsive">
-                    <table id="gridBeneficiarios" class="table table-striped table-bordered">
+                    <table id="gridBeneficiarios" class="table table-striped">
                         <thead>
                             <tr>
                                 <th>CPF</th>
@@ -139,11 +141,10 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <!-- Os dados do grid serão carregados aqui via JavaScript/Ajax -->
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
-    </div>
+        </div>
 </div>

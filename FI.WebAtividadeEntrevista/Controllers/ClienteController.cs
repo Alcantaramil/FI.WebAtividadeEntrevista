@@ -60,9 +60,11 @@ namespace WebAtividadeEntrevista.Controllers
                     Telefone = model.Telefone
                 });
 
-           
-                return Json("Cadastro efetuado com sucesso");
-                
+                return Json(new
+                {
+                    mensagem = "Cliente cadastrado com sucesso!",
+                    id = model.Id
+                });
             }
         }
 

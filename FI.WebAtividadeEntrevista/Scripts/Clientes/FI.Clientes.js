@@ -26,13 +26,27 @@ $(document).ready(function () {
                 },
             success:
                 function (r) {
-                    ModalDialog("Sucesso!", r)
-                    $("#formCadastro")[0].reset();
+                    ModalDialog("Sucesso!", r.mensagem)                        
+                    setTimeout(function () {
+                        window.location.href = '/Cliente/Alterar?id=' + r.id;
+                    }, 3000);                    
                 }
         });
     })
 });
+function mascaraCPF(input) {
+    let valor = input.value.replace(/\D/g, "");
+    if (valor.length > 11) valor = valor.substring(0, 11);
 
+    if (valor.length > 9) {
+        valor = valor.replace(/^(\d{3})(\d{3})(\d{3})(\d{2}).*/, "$1.$2.$3-$4");
+    } else if (valor.length > 6) {
+        valor = valor.replace(/^(\d{3})(\d{3})(\d{3}).*/, "$1.$2.$3");
+    } else if (valor.length > 3) {
+        valor = valor.replace(/^(\d{3})(\d{3}).*/, "$1.$2");
+    }
+    input.value = valor;
+}
 function ModalDialog(titulo, texto) {
     var random = Math.random().toString().replace('.', '');
     var texto = '<div id="' + random + '" class="modal fade">                                                               ' +

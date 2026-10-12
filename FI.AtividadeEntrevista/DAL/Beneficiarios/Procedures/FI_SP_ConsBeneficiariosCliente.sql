@@ -1,16 +1,4 @@
-﻿USE [I:\FUNCAO\FI.WEBATIVIDADEENTREVISTA\APP_DATA\BANCODEDADOS.MDF]
-GO
-
-/****** Object: SqlProcedure [dbo].[FI_SP_ConsBeneficiario] Script Date: 11/10/2026 18:44:44 ******/
-SET ANSI_NULLS ON
-GO
-
-SET QUOTED_IDENTIFIER ON
-GO
-
-
-
-CREATE PROC FI_SP_ConsBeneficiariosCliente
+﻿CREATE PROC FI_SP_ConsBeneficiariosCliente
 	@IDCLIENTE BIGINT
 AS
 BEGIN

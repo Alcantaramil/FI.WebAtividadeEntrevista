@@ -120,7 +120,7 @@ function carregarBeneficiarios() {
                     linhas += '<tr>' +
                         '<td>' + item.CPF + '</td>' +
                         '<td>' + item.Nome + '</td>' +
-                        '<td><button type="button" class="btn btn-info btn-sm" onclick="alterarBeneficiario(' + item.Id + ')">Alterar</button> <button type = "button" class="btn btn-danger btn-sm" onclick = "excluirBeneficiario(' + item.Id + ')" > Excluir</button ></td > ' +
+                        '<td><button type="button" class="btn btn-info btn-sm" title="Alterar" onclick="alterarBeneficiario(' + item.Id + ')">Alterar</button> <button type = "button" class="btn btn-danger btn-sm" title="Excluir" onclick = "excluirBeneficiario(' + item.Id + ')" > Excluir</button ></td > ' +
                         '</tr>';
                 });
             } else {
@@ -136,7 +136,7 @@ function carregarBeneficiarios() {
 function resetarFormularioBeneficiario() {
     $('#formCadastroBeneficiario')[0].reset();
     $('#BeneficiarioId').val("0");
-    $('#btnSalvarBeneficiario').text("Incluir").removeClass("btn-primary").addClass("btn-success");
+    $('#btnSalvarBeneficiario').text("Incluir").attr("title", "Incluir").removeClass("btn-primary").addClass("btn-success");
 }
 
 function alterarBeneficiario(id) {
@@ -150,7 +150,7 @@ function alterarBeneficiario(id) {
                 $('#BeneficiarioId').val(data.Id);
                 $('#CPFBeneficiario').val(formatarCPF(data.CPF));
                 $('#NomeBeneficiario').val(data.Nome);
-                $('#btnSalvarBeneficiario').text("Salvar").removeClass("btn-success").addClass("btn-primary");
+                $('#btnSalvarBeneficiario').text("Salvar").attr("title", "Salvar Alterações").removeClass("btn-success").addClass("btn-primary");
             }
         },
         error: function () {
