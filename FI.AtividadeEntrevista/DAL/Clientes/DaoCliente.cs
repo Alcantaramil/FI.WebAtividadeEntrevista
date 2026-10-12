@@ -20,7 +20,7 @@ namespace FI.AtividadeEntrevista.DAL
 
             parametros.Add(new System.Data.SqlClient.SqlParameter("Nome", cliente.Nome));
             parametros.Add(new System.Data.SqlClient.SqlParameter("Sobrenome", cliente.Sobrenome));
-            parametros.Add(new System.Data.SqlClient.SqlParameter("Cpf", cliente.Cpf));
+            parametros.Add(new System.Data.SqlClient.SqlParameter("CPF", cliente.CPF));
             parametros.Add(new System.Data.SqlClient.SqlParameter("Nacionalidade", cliente.Nacionalidade));
             parametros.Add(new System.Data.SqlClient.SqlParameter("CEP", cliente.CEP));
             parametros.Add(new System.Data.SqlClient.SqlParameter("Estado", cliente.Estado));
@@ -110,6 +110,7 @@ namespace FI.AtividadeEntrevista.DAL
 
             parametros.Add(new System.Data.SqlClient.SqlParameter("Nome", cliente.Nome));
             parametros.Add(new System.Data.SqlClient.SqlParameter("Sobrenome", cliente.Sobrenome));
+            parametros.Add(new System.Data.SqlClient.SqlParameter("CPF", cliente.CPF));
             parametros.Add(new System.Data.SqlClient.SqlParameter("Nacionalidade", cliente.Nacionalidade));
             parametros.Add(new System.Data.SqlClient.SqlParameter("CEP", cliente.CEP));
             parametros.Add(new System.Data.SqlClient.SqlParameter("Estado", cliente.Estado));
@@ -154,6 +155,7 @@ namespace FI.AtividadeEntrevista.DAL
                     cli.Nome = row.Field<string>("Nome");
                     cli.Sobrenome = row.Field<string>("Sobrenome");
                     cli.Telefone = row.Field<string>("Telefone");
+                    cli.CPF = row.Field<string>("CPF");
                     lista.Add(cli);
                 }
             }

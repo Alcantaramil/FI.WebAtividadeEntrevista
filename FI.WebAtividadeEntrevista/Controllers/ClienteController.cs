@@ -26,9 +26,13 @@ namespace WebAtividadeEntrevista.Controllers
         public JsonResult Incluir(ClienteModel model)
         {
             BoCliente bo = new BoCliente();
-            
-            
 
+
+            if (bo.VerificarExistencia(model.CPF.Replace(".", "").Replace("-", "")))
+            {
+                Response.StatusCode = 400;
+                return Json("CPF: " + model.CPF + " já cadastrado!");
+            }
 
             if (!this.ModelState.IsValid)
             {
@@ -52,12 +56,13 @@ namespace WebAtividadeEntrevista.Controllers
                     Nacionalidade = model.Nacionalidade,
                     Nome = model.Nome,
                     Sobrenome = model.Sobrenome,
-                    Cpf = model.Cpf,
+                    CPF = model.CPF.Replace(".", "").Replace("-", ""),
                     Telefone = model.Telefone
                 });
 
            
                 return Json("Cadastro efetuado com sucesso");
+                
             }
         }
 
@@ -88,7 +93,8 @@ namespace WebAtividadeEntrevista.Controllers
                     Nacionalidade = model.Nacionalidade,
                     Nome = model.Nome,
                     Sobrenome = model.Sobrenome,
-                    Telefone = model.Telefone
+                    Telefone = model.Telefone,
+                    CPF = model.CPF.Replace(".", "").Replace("-", "")
                 });
                                
                 return Json("Cadastro alterado com sucesso");
@@ -115,7 +121,8 @@ namespace WebAtividadeEntrevista.Controllers
                     Nacionalidade = cliente.Nacionalidade,
                     Nome = cliente.Nome,
                     Sobrenome = cliente.Sobrenome,
-                    Telefone = cliente.Telefone
+                    Telefone = cliente.Telefone,
+                    CPF = cliente.CPF
                 };
 
             

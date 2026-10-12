@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FI.WebAtividadeEntrevista.Validators;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -64,8 +65,12 @@ namespace WebAtividadeEntrevista.Models
         /// <summary>
         /// Sobrenome
         /// </summary>
-        [Required]
-        public string Cpf { get; set; }
+        /// <summary>
+        /// CPF
+        /// </summary>
+        [Required(ErrorMessage = "O CPF é obrigatório")]
+        [CpfValidation(ErrorMessage = "Digite um CPF válido")]
+        public string CPF { get; set; }
         /// <summary>
         /// Telefone
         /// </summary>
