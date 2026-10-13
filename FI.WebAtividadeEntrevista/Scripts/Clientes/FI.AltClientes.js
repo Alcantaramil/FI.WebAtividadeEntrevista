@@ -116,7 +116,7 @@ function carregarBeneficiarios() {
             if (data && data.length > 0) {
                 $.each(data, function (i, item) {
                     linhas += '<tr>' +
-                        '<td>' + item.CPF + '</td>' +
+                        '<td>' + formatarCPF(item.CPF) + '</td>' +
                         '<td>' + item.Nome + '</td>' +
                         '<td><button type="button" class="btn btn-info btn-sm" title="Alterar" onclick="alterarBeneficiario(' + item.Id + ')">Alterar</button> <button type = "button" class="btn btn-danger btn-sm" title="Excluir" onclick = "excluirBeneficiario(' + item.Id + ')" > Excluir</button ></td > ' +
                         '</tr>';
