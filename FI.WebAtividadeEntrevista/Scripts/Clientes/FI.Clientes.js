@@ -71,7 +71,13 @@ $('#formCadastroBeneficiario').submit(function (e) {
     let cpf = $(this).find("#CPFBeneficiario").val();
     let nome = $(this).find("#NomeBeneficiario").val();
     let tempId = $('#BeneficiarioId').val();
+
     
+    if (!validarCPF(cpf)) {
+        ModalDialog("Atenção", "Digite um CPF válido");
+        return;
+    }
+
     let cpfLimpo = formatarCPF(cpf);
     
     let cpfDuplicado = beneficiariosTemporarios.some(function (ben) {
@@ -141,6 +147,34 @@ function formatarCPF(cpf) {
         return cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4");
     }
     return cpf;
+}
+function validarCPF(cpf) {
+    cpf = cpf.replace(/\D/g, "");
+
+    if (cpf.length !== 11) return false;
+
+    // Elimina CPFs invalidos conhecidos (todos os dígitos iguais)
+    if (/^(\d)\1{10}$/.test(cpf)) return false;
+
+    // Validação do 1º dígito
+    let soma = 0;
+    for (let i = 0; i < 9; i++) {
+        soma += parseInt(cpf.charAt(i)) * (10 - i);
+    }
+    let resto = 11 - (soma % 11);
+    let digito1 = (resto === 10 || resto === 11) ? 0 : resto;
+    if (digito1 !== parseInt(cpf.charAt(9))) return false;
+
+    // Validação do 2º dígito
+    soma = 0;
+    for (let i = 0; i < 10; i++) {
+        soma += parseInt(cpf.charAt(i)) * (11 - i);
+    }
+    resto = 11 - (soma % 11);
+    let digito2 = (resto === 10 || resto === 11) ? 0 : resto;
+    if (digito2 !== parseInt(cpf.charAt(10))) return false;
+
+    return true;
 }
 function ModalDialog(titulo, texto) {
     var random = Math.random().toString().replace('.', '');
