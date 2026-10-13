@@ -21,7 +21,7 @@ namespace WebAtividadeEntrevista.Controllers
         {
             return View();
         }
-
+        
         [HttpPost]
         public JsonResult Incluir(ClienteModel model)
         {
@@ -45,9 +45,9 @@ namespace WebAtividadeEntrevista.Controllers
             }
             else
             {
-                
+
                 model.Id = bo.Incluir(new Cliente()
-                {                    
+                {
                     CEP = model.CEP,
                     Cidade = model.Cidade,
                     Email = model.Email,
@@ -60,14 +60,24 @@ namespace WebAtividadeEntrevista.Controllers
                     Telefone = model.Telefone
                 });
 
-                return Json(new
+
+                if (model.Beneficiarios != null && model.Beneficiarios.Count > 0)
                 {
-                    mensagem = "Cliente cadastrado com sucesso!",
-                    id = model.Id
-                });
+                    BoBeneficiario boBeneficiario = new BoBeneficiario();
+                    foreach (var ben in model.Beneficiarios)
+                    {
+                        boBeneficiario.Incluir(new Beneficiario()
+                        {
+                            CPF = ben.CPF.Replace(".", "").Replace("-", ""),
+                            Nome = ben.Nome,
+                            IdCliente = model.Id
+                        });
+                    }
+                }
+
+                return Json("Cliente e beneficiários cadastrados com sucesso!");
             }
         }
-
         [HttpPost]
         public JsonResult Alterar(ClienteModel model)
         {

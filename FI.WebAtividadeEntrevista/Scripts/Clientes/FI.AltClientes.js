@@ -10,9 +10,7 @@ $(document).ready(function () {
         $('#formCadastro #Cidade').val(obj.Cidade);
         $('#formCadastro #Logradouro').val(obj.Logradouro);
         $('#formCadastro #Telefone').val(obj.Telefone);
-        $('#formCadastro #CPF').val(formatarCPF(obj.CPF));
-
-        $('#btnBeneficiarios').prop('disabled', false);
+        $('#formCadastro #CPF').val(formatarCPF(obj.CPF));        
     }
 
     $('#formCadastro').submit(function (e) {
@@ -178,6 +176,7 @@ function excluirBeneficiario(id) {
         },
         success: function (r) {
             ModalDialog("Sucesso!", r);
+            resetarFormularioBeneficiario();
             carregarBeneficiarios();
         }
     });
